@@ -1,1 +1,13 @@
-spring.application.name=spring-boot-curso
+spring:
+    application:
+        name: spring-boot-curso
+    datasource:
+        driver-class-name: com.mysql.cj.jdbc.Driver
+        url: jdbc:mysql://localhost:3306/spring_curso?useTimezone=true&serverTimezone=UTC
+        username: root
+        password: 
+    jpa:
+        hibernate:
+            ddl-auto: update
+        show-sql: false
+        open-in-view: false

@@ -3,6 +3,7 @@ package com.gabriel_vitors.spring_boot_curso.controllers;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
@@ -29,7 +30,7 @@ public class PersonController {
 
 
     @GetMapping("/{id}")    
-    public Person findById(@PathVariable("id") String id){
+    public Person findById(@PathVariable("id") Long id){
 
         return service.findById(id);
     }
@@ -54,9 +55,9 @@ public class PersonController {
 
 
     @DeleteMapping("/{id}")
-    public void delete(@PathVariable("id") String id) {
+    public ResponseEntity<?> delete(@PathVariable("id") Long id) {
         service.delete(id);
-        return;
+        return ResponseEntity.noContent().build();
     }
     
 }
