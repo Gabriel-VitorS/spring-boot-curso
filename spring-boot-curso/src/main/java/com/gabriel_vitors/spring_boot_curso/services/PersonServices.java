@@ -4,14 +4,16 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.concurrent.atomic.AtomicLong;
 
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import com.gabriel_vitors.spring_boot_curso.controllers.TesteLogController;
 import com.gabriel_vitors.spring_boot_curso.exception.ResourceNotFoundException;
 import com.gabriel_vitors.spring_boot_curso.model.Person;
 import com.gabriel_vitors.spring_boot_curso.repository.PersonRepository;
 
-import java.util.logging.Logger;;
 
 @Service
 public class PersonServices {
@@ -21,10 +23,10 @@ public class PersonServices {
     @Autowired
     PersonRepository repository;
 
-    private Logger logger = Logger.getLogger(PersonServices.class.getName());
+    private Logger logger = LoggerFactory.getLogger(PersonServices.class.getName());
 
     public Person findById(Long id){
-        logger.info("Finding one Person!");
+        logger.warn("Finding eee Person!");
 
 
         return repository.findById(id).orElseThrow(
