@@ -8,6 +8,7 @@ import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
+import com.gabriel_vitors.spring_boot_curso.data.dto.PersonDTO;
 import com.gabriel_vitors.spring_boot_curso.model.Person;
 import com.gabriel_vitors.spring_boot_curso.services.PersonServices;
 
@@ -30,25 +31,25 @@ public class PersonController {
 
 
     @GetMapping("/{id}")    
-    public Person findById(@PathVariable("id") Long id){
+    public PersonDTO findById(@PathVariable("id") Long id){
 
         return service.findById(id);
     }
 
     @GetMapping()    
-    public List<Person> findAll(){
+    public List<PersonDTO> findAll(){
 
         return service.findAll();
     }
 
     @PostMapping()
-    public Person create(@RequestBody Person person) {
+    public PersonDTO create(@RequestBody PersonDTO person) {
         
         return service.create(person);
     }
 
     @PutMapping("")
-    public Person update(@RequestBody Person person) {
+    public PersonDTO update(@RequestBody PersonDTO person) {
         
         return service.update(person);
     }

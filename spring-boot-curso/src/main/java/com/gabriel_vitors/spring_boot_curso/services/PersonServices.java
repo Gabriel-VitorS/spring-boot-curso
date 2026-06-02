@@ -10,7 +10,9 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import com.gabriel_vitors.spring_boot_curso.controllers.TesteLogController;
+import com.gabriel_vitors.spring_boot_curso.data.dto.PersonDTO;
 import com.gabriel_vitors.spring_boot_curso.exception.ResourceNotFoundException;
+import com.gabriel_vitors.spring_boot_curso.mapper.PersonMapper;
 import com.gabriel_vitors.spring_boot_curso.model.Person;
 import com.gabriel_vitors.spring_boot_curso.repository.PersonRepository;
 
@@ -25,45 +27,50 @@ public class PersonServices {
 
     private Logger logger = LoggerFactory.getLogger(PersonServices.class.getName());
 
-    public Person findById(Long id){
-        logger.warn("Finding eee Person!");
+    public PersonDTO findById(Long id){
+        logger.info("Finding one Person!");
 
-
-        return repository.findById(id).orElseThrow(
+        var person = repository.findById(id).orElseThrow(
             () -> new ResourceNotFoundException("No recors found for this ID")
         );
+
+        return PersonMapper.INSTANCE.personToPersonDTO(person);
     }
 
-    public List<Person> findAll(){
+    public List<PersonDTO> findAll(){
         logger.info("Finding all Peaplo!");
 
-        return repository.findAll();
+        return PersonMapper.INSTANCE.personToPersonDTOList(repository.findAll());
 
     }
 
-    public Person create(Person person){
+    public PersonDTO create(PersonDTO personDTO){
         logger.info("Creating one Person!");
 
-        return repository.save(person);
+        var person = PersonMapper.INSTANCE.personDTOTOPerson(personDTO);
+
+        return PersonMapper.INSTANCE.personToPersonDTO(repository.save(person));
     }
 
-    public Person update(Person person){
+    public PersonDTO update(PersonDTO personDTO){
         logger.info("Updating one Person!");
 
-        var entity = this.findById(person.getId());
+        var entity = this.findById(personDTO.getId());
 
-        entity.setFirstName(person.getFirstName());
-        entity.setLastName(person.getLastName());
-        entity.setGender(person.getGender());
-        entity.setAddress(person.getAddress());
+        entity.setFirstName(personDTO.getFirstName());
+        entity.setLastName(personDTO.getLastName());
+        entity.setGender(personDTO.getGender());
+        entity.setAddress(personDTO.getAddress());
 
-        return repository.save(person);
+        var person = PersonMapper.INSTANCE.personDTOTOPerson(personDTO);
+
+        return PersonMapper.INSTANCE.personToPersonDTO(repository.save(person));
     }
 
     public void delete(Long id){
         logger.info("Updating one Person!");
 
-        var entity = this.findById(id);
+        var entity = PersonMapper.INSTANCE.personDTOTOPerson(this.findById(id));
 
         repository.delete(entity);
 
