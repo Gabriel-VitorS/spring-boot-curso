@@ -11,6 +11,7 @@ import org.springframework.stereotype.Service;
 
 import com.gabriel_vitors.spring_boot_curso.controllers.TesteLogController;
 import com.gabriel_vitors.spring_boot_curso.data.dto.PersonDTO;
+import com.gabriel_vitors.spring_boot_curso.data.dto.v2.PersonDTOV2;
 import com.gabriel_vitors.spring_boot_curso.exception.ResourceNotFoundException;
 import com.gabriel_vitors.spring_boot_curso.mapper.PersonMapper;
 import com.gabriel_vitors.spring_boot_curso.model.Person;
@@ -50,6 +51,14 @@ public class PersonServices {
         var person = PersonMapper.INSTANCE.personDTOTOPerson(personDTO);
 
         return PersonMapper.INSTANCE.personToPersonDTO(repository.save(person));
+    }
+
+    public PersonDTOV2 createV2(PersonDTOV2 personDTO){
+        logger.info("Creating one Person!");
+
+        var person = PersonMapper.INSTANCE.personDTOV2TOPerson(personDTO);
+
+        return PersonMapper.INSTANCE.personToPersonDTOV2(repository.save(person));
     }
 
     public PersonDTO update(PersonDTO personDTO){

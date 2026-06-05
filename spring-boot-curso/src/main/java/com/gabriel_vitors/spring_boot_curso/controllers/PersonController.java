@@ -9,6 +9,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.gabriel_vitors.spring_boot_curso.data.dto.PersonDTO;
+import com.gabriel_vitors.spring_boot_curso.data.dto.v2.PersonDTOV2;
 import com.gabriel_vitors.spring_boot_curso.model.Person;
 import com.gabriel_vitors.spring_boot_curso.services.PersonServices;
 
@@ -46,6 +47,12 @@ public class PersonController {
     public PersonDTO create(@RequestBody PersonDTO person) {
         
         return service.create(person);
+    }
+
+    @PostMapping(name = "/v2")
+    public PersonDTOV2 create(@RequestBody PersonDTOV2 person) {
+        
+        return service.createV2(person);
     }
 
     @PutMapping("")
