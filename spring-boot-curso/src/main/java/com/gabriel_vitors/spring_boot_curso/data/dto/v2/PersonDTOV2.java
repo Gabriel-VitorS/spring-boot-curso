@@ -21,7 +21,7 @@ public class PersonDTOV2 implements Serializable {
 
     private String gender;
 
-    private Date bithDay;
+    //private Date bithDay;
 
 
 
@@ -59,12 +59,12 @@ public class PersonDTOV2 implements Serializable {
         this.gender = gender;
     }
     
-    public Date getBithDay() {
+    /*public Date getBithDay() {
         return bithDay;
     }
     public void setBithDay(Date bithDay) {
         this.bithDay = bithDay;
-    }
+    }*/
     
     @Override
     public int hashCode() {
@@ -75,7 +75,7 @@ public class PersonDTOV2 implements Serializable {
         result = prime * result + ((lastName == null) ? 0 : lastName.hashCode());
         result = prime * result + ((address == null) ? 0 : address.hashCode());
         result = prime * result + ((gender == null) ? 0 : gender.hashCode());
-        result = prime * result + ((bithDay == null) ? 0 : bithDay.hashCode());
+        //result = prime * result + ((bithDay == null) ? 0 : bithDay.hashCode());
         return result;
     }
     @Override
@@ -112,11 +112,11 @@ public class PersonDTOV2 implements Serializable {
                 return false;
         } else if (!gender.equals(other.gender))
             return false;
-        if (bithDay == null) {
+        /*if (bithDay == null) {
             if (other.bithDay != null)
                 return false;
         } else if (!bithDay.equals(other.bithDay))
-            return false;
+            return false;*/
         return true;
     }
 

@@ -49,11 +49,11 @@ public class PersonController {
         return service.create(person);
     }
 
-    @PostMapping(name = "/v2")
-    public PersonDTOV2 create(@RequestBody PersonDTOV2 person) {
+    // @PostMapping(name = "/v2")
+    // public PersonDTOV2 createV2(@RequestBody PersonDTOV2 person) {
         
-        return service.createV2(person);
-    }
+    //     return service.createV2(person);
+    // }
 
     @PutMapping("")
     public PersonDTO update(@RequestBody PersonDTO person) {
