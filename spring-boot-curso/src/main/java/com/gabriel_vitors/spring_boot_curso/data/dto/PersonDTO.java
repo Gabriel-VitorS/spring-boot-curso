@@ -1,7 +1,18 @@
 package com.gabriel_vitors.spring_boot_curso.data.dto;
 
 import java.io.Serializable;
+import java.util.Date;
 
+import com.fasterxml.jackson.annotation.JsonFormat;
+import com.fasterxml.jackson.annotation.JsonInclude;
+import com.fasterxml.jackson.annotation.JsonProperty;
+import com.fasterxml.jackson.annotation.JsonPropertyOrder;
+import com.fasterxml.jackson.databind.annotation.JsonSerialize;
+import com.gabriel_vitors.spring_boot_curso.serializer.GenderSerializer;
+
+import jakarta.persistence.Column;
+
+//@JsonPropertyOrder({"id", "gender", "firt_name"})
 public class PersonDTO implements Serializable {
 
     private static final long serialVersionUID = 1L;
@@ -12,12 +23,19 @@ public class PersonDTO implements Serializable {
 
     private Long id;
     
+    @JsonInclude(JsonInclude.Include.NON_NULL) //só vai aparecer se não for null
+    // @JsonProperty("firt_name")
     private String firstName;
 
     private String lastName;
 
     private String address;
 
+    // @JsonFormat(pattern = "dd/MM/yyyy")
+    // private Date birthDay;
+
+
+    @JsonSerialize(using = GenderSerializer.class)
     private String gender;
 
 
